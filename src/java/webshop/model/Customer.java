@@ -16,14 +16,48 @@ import javax.persistence.Id;
  * @author Nizam
  */
 @Entity
-public class Customer implements Serializable, ICustomer {
+public class Customer implements Serializable, ICustomer{
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String userName;
     private String password;
-   
+
+    public Customer() {
+    }
+
+    public Customer(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+    
+    
+    
+    public String getUserName() {
+        return userName;
+    }
+    
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String Password) {
+        this.password = Password;
+    }
+
+    public String getId() {
+        return userName;
+    }
+
+    public void setId(String userName) {
+        this.userName = userName;
+    }
 
     @Override
     public int hashCode() {
@@ -49,15 +83,5 @@ public class Customer implements Serializable, ICustomer {
     public String toString() {
         return "webshop.model.Customer[ id=" + userName + " ]";
     }
-
-    @Override
-    public String getUserName() {
-        return this.userName;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
+    
 }
