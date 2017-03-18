@@ -23,6 +23,9 @@ public class Customer implements Serializable, ICustomer{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String userName;
     private String password;
+    private boolean banned = false;
+
+    
 
     public Customer() {
     }
@@ -30,6 +33,10 @@ public class Customer implements Serializable, ICustomer{
     public Customer(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+    public Customer(String userName) {
+        this.userName = userName;
+        
     }
     
     
@@ -82,6 +89,13 @@ public class Customer implements Serializable, ICustomer{
     @Override
     public String toString() {
         return "webshop.model.Customer[ id=" + userName + " ]";
+    }
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
     }
     
 }

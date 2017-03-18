@@ -8,6 +8,7 @@ package webshop.view;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
@@ -31,6 +32,14 @@ public class CustomerManager implements Serializable {
     private String password;
     private ICustomer currentCustomer;
     private String message;
+    private String page;
+    private boolean showMessage = false;
+    private List<Customer> customers;
+    private Customer selectedUser;
+
+    public boolean isShowMessage() {
+        return showMessage;
+    }
 
     @EJB
     private CustomerFacade customerFacade;
@@ -57,6 +66,14 @@ public class CustomerManager implements Serializable {
     public CustomerManager() {
     }
 
+    public ICustomer getCurrentCustomer() {
+        return currentCustomer;
+    }
+
+    public void setCurrentCustomer(ICustomer currentCustomer) {
+        this.currentCustomer = currentCustomer;
+    }
+
     public String getUserName() {
         return userName;
     }
@@ -78,7 +95,7 @@ public class CustomerManager implements Serializable {
             displayMessage("You must provide a User Name");
         } else if (password.isEmpty()) {
             displayMessage("You must provide a Passsword");
-        } else if (customerFacade.alreadyRegisterd(userName)) {
+        } else if (userName.equals("admin") || customerFacade.alreadyRegisterd(userName)) {
             displayMessage("User is already registered, choose another one!");
         } else {
             currentCustomer = customerFacade.register(userName, password);
@@ -88,24 +105,77 @@ public class CustomerManager implements Serializable {
 
     public String login() {
         startConversation();
-        ICustomer customer = customerFacade.find(userName, password);
-        if (customer.getUserName().equals(userName) && customer.getPassword().equals(password)) {
-            currentCustomer = customer;
-            return "Home";
+        Customer customer = (Customer) customerFacade.find(userName, password);
+        addAdmin();
+        if (customer == null) {
+           displayMessage("You are not registered in the system");
+        } 
+        else if (customer.isBanned()) 
+        {
+            displayMessage("You have been banned. You cannot enter into the system.");
         }
-        return "Home";
+        else if (customer.getPassword().equals(password) == false)
+        {
+            displayMessage("Incorrect user name or password");
+        }
+        else
+        {
+            if(customer.getUserName().equals("admin")){
+              page = "administrator";
+            }
+            else {
+              page= "Home";
+            }
+        }
+        return page;
+
     }
 
     public void displayMessage(String msg) {
+        showMessage = true;
         message = msg;
     }
-    
-    public String logout()
-    {
+
+    public String logout() {
         stopConversation();
-        currentCustomer=null;
-        userName=null;
-        password=null;
+       // current=null;
+        userName = null;
         return "customer";
     }
+
+    public List<Customer> getCustomers() {
+        customers = customerFacade.getCustomers();
+
+        Customer admin = null;
+        for (Customer c : customers) {
+            if (c.getUserName().equals("Admin")) {
+                admin = c;
+                break;
+            }
+        }
+
+        if (admin != null) {
+            customers.remove(admin);
+        }
+
+        return customers;
+    }
+    
+    private void addAdmin()
+   {
+      Customer adminAcc = customerFacade.findByName("admin");
+      if (adminAcc == null)
+                     currentCustomer = customerFacade.register("admin", "admin");
+   }
+
+   public void banOrAllowUser(String userName)
+   {
+       
+      selectedUser = customerFacade.findByName(userName);
+      
+      boolean value = !selectedUser.isBanned();
+      selectedUser.setBanned(value);
+      customerFacade.updateCustomer(selectedUser);
+   }
+
 }

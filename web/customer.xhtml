@@ -14,22 +14,27 @@
                 <br/>
                 <h:form>
                     <p>
-                        <h:outputLabel for="username" value="UserName "></h:outputLabel>
+                        <div id="login-box-name" style="margin-left:20px;">
+                        <h:outputLabel for="username" value="UserName "></h:outputLabel></div>
+                        <div id="login-box-field" style="margin-left:20px;">
                         <h:inputText id="username" required="true" requiredMessage="Please enter your user name" value="#{customerManager.userName}" >
                             <f:validateLength minimum="5" maximum="10" />
-                        </h:inputText>
+                        </h:inputText></div>
+                        
                         <h:message for="username" style="color:red"  />
                         <br/>
                     </p>
                     <p>
-                        <h:outputLabel for="password" value="Password " ></h:outputLabel>
-                        <h:inputSecret id="password" required="true" requiredMessage="Please enter your password" value="#{customerManager.password}" ></h:inputSecret>
+                        <div id="login-box-name" style="margin-left:20px;">
+                            <h:outputLabel for="password" value="Password " ></h:outputLabel></div>
+                        <div id="login-box-field" style="margin-left:20px;">
+                            <h:inputSecret id="password" required="true" requiredMessage="Please enter your password" value="#{customerManager.password}" ></h:inputSecret></div>
                         <h:message for="password" style="color:red" />
                         <br/>
                     </p>
 
                     <p>
-                        <h:outputLabel  rendered="#{true}" style="color: red" value="#{customerManager.message}"></h:outputLabel>
+                        <h:outputLabel  rendered="#{customerManager.showMessage}" style="color: red" value="#{customerManager.message}"></h:outputLabel>
                     </p>
                     <p>
 

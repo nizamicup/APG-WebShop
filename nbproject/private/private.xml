@@ -3,11 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Data/APGWebShop/web/customer.xhtml</file>
-            <file>file:/C:/Data/APGWebShop/src/java/webshop/model/Customer.java</file>
-            <file>file:/C:/Data/APGWebShop/web/Home.xhtml</file>
-            <file>file:/C:/Data/APGWebShop/src/java/webshop/view/CustomerManager.java</file>
-            <file>file:/C:/Data/APGWebShop/src/java/webshop/controller/CustomerFacade.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/model/ShopingBasket.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/view/ShopingBasketManager.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/web/ShopingBasket.xhtml</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/web/customer.xhtml</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/controller/GnomeFacade.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/model/Gnome.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/web/Home.xhtml</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/model/ICustomer.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/view/CustomerManager.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/web/WEB-INF/glassfish-resources.xml</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/model/IShopingBasket.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/controller/CustomerFacade.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/view/GnomeManager.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/web/administrator.xhtml</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/model/IGnome.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/controller/BasketFacade.java</file>
+            <file>file:/C:/Users/Nizam/Documents/NetBeansProjects/APGWebShop/src/java/webshop/model/Customer.java</file>
         </group>
     </open-files>
 </project-private>

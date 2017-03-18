@@ -1,18 +1,60 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Home</title>
         <h:form>
-            <h:outputLabel value="Current User: "></h:outputLabel>
-            <h:outputText value="#{customerManager.userName}"></h:outputText>
-
-            <h:commandButton value="logout" action="#{customerManager.logout()}"></h:commandButton>
+            <div style="margin-left: 20px">
+                <h:outputLabel value="Current User: "></h:outputLabel>
+                <h:outputText value="#{customerManager.userName}"></h:outputText>
+                <h:commandLink value="logout" action="#{customerManager.logout()}"></h:commandLink>
+            </div>
+            <div align="right">
+            <h:commandLink  action="ShopingBasket">
+                My Shoping Basket
+            </h:commandLink></div>
         </h:form>
     </h:head>
     <h:body>
-        Welcome to the MarketPace
+        <div style="margin-top: 50px; margin-left: 20px">
+            <b>Welcome to the MarketPace</b>
+        </div>
+        
+            <h:form>
+                <h:dataTable var="_gnome" value="#{gnomeManager.gnomes}" border="1">
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{_gnome.name}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Price</f:facet>
+                        <h:outputText value="#{_gnome.price}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Stock</f:facet>
+                        <h:outputText value="#{_gnome.stock}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Select</f:facet>
+                        <h:commandButton value="Add"
+                                         action="#{gnomeManager.setSelectedGnome(_gnome)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            <h:form>
+                <h:outputLabel for="gnomeName">Selected Gnome: </h:outputLabel>
+                <h:outputText id="gnomeName" value="#{gnomeManager.selectedGnome.name}"/><br/>
+                <h:outputLabel for="units">Units: </h:outputLabel>
+                <h:inputText id="units" value="#{gnomeManager.selectedUnits}"/>
+                <h:commandButton value="Add to basket" action="#{gnomeManager.addToCart(customerManager.userName,gnomeManager.selectedGnome.name,gnomeManager.selectedUnits)}"/><br/>
+                <p>
+                    <h:outputLabel  rendered="#{gnomeManager.showMessage}" style="color: red" value="#{gnomeManager.message}"></h:outputLabel>
+                </p>
+
+            </h:form>
+      
     </h:body>
 </html>
 
